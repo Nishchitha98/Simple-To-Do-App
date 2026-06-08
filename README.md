@@ -29,7 +29,7 @@ A simple To-Do List web application built using HTML, CSS, and JavaScript.
 ---
 ## Project Structure
 
-* `index2.html` – Main webpage
+* `index.html` – Main webpage
 * `style2.css` – Styling and design
 * `script2.js` – Application functionality
 ---
