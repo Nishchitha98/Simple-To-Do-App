@@ -19,7 +19,7 @@ A simple To-Do List web application built using HTML, CSS, and JavaScript.
 ---
 
 ## Live Demo 
- https://nishchitha98.github.io/Simple-To-Do-App/
+https://nishchitha98.github.io/Simple-To-Do-App/
 ---
 ## How to Run
 
