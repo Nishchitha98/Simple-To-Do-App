@@ -1,0 +1,272 @@
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
+
+:root {
+    --bg-gradient: linear-gradient(135deg, #090a0f 0%, #121324 100%);
+    --card-bg: rgba(20, 21, 38, 0.6);
+    --card-border: rgba(255, 255, 255, 0.07);
+    --card-blur: blur(20px);
+    
+    --primary-color: #6366f1;
+    --primary-hover: #4f46e5;
+    --primary-gradient: linear-gradient(135deg, #818cf8 0%, #6366f1 100%);
+    
+    --secondary-bg: rgba(255, 255, 255, 0.04);
+    --secondary-hover: rgba(255, 255, 255, 0.08);
+    
+    --text-primary: #f8fafc;
+    --text-muted: #94a3b8;
+    
+    --danger-color: #f43f5e;
+    --danger-hover: #e11d48;
+    --danger-bg: rgba(244, 63, 94, 0.1);
+    --danger-border: rgba(244, 63, 94, 0.2);
+    
+    --transition-fast: 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-normal: 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    
+    --shadow-premium: 0 25px 50px -12px rgba(0, 0, 0, 0.6), 
+                      0 0 40px -5px rgba(99, 102, 241, 0.12);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg-gradient);
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    overflow-x: hidden;
+}
+
+/* Ambient glow in background */
+body::before {
+    content: '';
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, rgba(99, 102, 241, 0.15) 0%, transparent 70%);
+    top: 15%;
+    left: 20%;
+    z-index: -1;
+    pointer-events: none;
+}
+
+body::after {
+    content: '';
+    position: absolute;
+    width: 350px;
+    height: 350px;
+    background: radial-gradient(circle, rgba(139, 92, 246, 0.12) 0%, transparent 70%);
+    bottom: 15%;
+    right: 15%;
+    z-index: -1;
+    pointer-events: none;
+}
+
+.app-container {
+    width: 100%;
+    max-width: 485px;
+    background: var(--card-bg);
+    backdrop-filter: var(--card-blur);
+    -webkit-backdrop-filter: var(--card-blur);
+    border: 1px solid var(--card-border);
+    border-radius: 24px;
+    padding: 40px 32px;
+    box-shadow: var(--shadow-premium);
+    position: relative;
+    overflow: hidden;
+}
+
+header {
+    margin-bottom: 32px;
+    text-align: center;
+}
+
+h1 {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 2.25rem;
+    font-weight: 800;
+    letter-spacing: -0.025em;
+    background: linear-gradient(135deg, #ffffff 30%, #c7d2fe 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 6px;
+}
+
+.subtitle {
+    font-size: 0.875rem;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+.input-group {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 24px;
+    background: rgba(10, 11, 20, 0.5);
+    padding: 6px;
+    border-radius: 16px;
+    border: 1px solid var(--card-border);
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.input-group:focus-within {
+    border-color: rgba(99, 102, 241, 0.4);
+    box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+
+#taskInput {
+    flex: 1;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: var(--text-primary);
+    font-family: inherit;
+    font-size: 0.95rem;
+    padding: 10px 14px;
+    min-width: 0; /* Prevents input overflow */
+}
+
+#taskInput::placeholder {
+    color: #475569;
+}
+
+button {
+    font-family: inherit;
+    font-size: 0.875rem;
+    font-weight: 600;
+    cursor: pointer;
+    border: none;
+    outline: none;
+    border-radius: 10px;
+    padding: 10px 18px;
+    transition: all var(--transition-fast);
+}
+
+/* Add Task Button */
+button[onclick="addTask()"] {
+    background: var(--primary-gradient);
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.25);
+    white-space: nowrap;
+}
+
+button[onclick="addTask()"]:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(99, 102, 241, 0.4);
+    filter: brightness(1.1);
+}
+
+button[onclick="addTask()"]:active {
+    transform: translateY(1px);
+}
+
+/* Clear Tasks Button */
+button[onclick="clearTasks()"] {
+    background: var(--secondary-bg);
+    color: var(--text-muted);
+    border: 1px solid var(--card-border);
+    white-space: nowrap;
+}
+
+button[onclick="clearTasks()"]:hover {
+    background: var(--danger-bg);
+    color: var(--danger-color);
+    border-color: var(--danger-border);
+    box-shadow: 0 4px 12px rgba(244, 63, 94, 0.1);
+}
+
+button[onclick="clearTasks()"]:active {
+    transform: translateY(1px);
+}
+
+/* Task List Container */
+#taskList {
+    list-style: none;
+    max-height: 340px;
+    overflow-y: auto;
+    padding-right: 4px;
+}
+
+/* Custom Scrollbar for list */
+#taskList::-webkit-scrollbar {
+    width: 5px;
+}
+
+#taskList::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+#taskList::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.08);
+    border-radius: 10px;
+}
+
+#taskList::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.18);
+}
+
+/* Task Items styling */
+#taskList li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    border-radius: 12px;
+    padding: 12px 16px;
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+    color: #e2e8f0;
+    transition: all var(--transition-normal);
+    animation: fadeInUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    word-break: break-word;
+    gap: 12px;
+}
+
+#taskList li:hover {
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.08);
+    transform: translateX(2px);
+}
+
+/* Delete Button inside Task Item */
+#taskList li button {
+    background: rgba(255, 255, 255, 0.03);
+    color: var(--text-muted);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    padding: 6px 12px;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-weight: 500;
+}
+
+#taskList li button:hover {
+    background: var(--danger-bg);
+    color: #f87171;
+    border-color: var(--danger-border);
+    box-shadow: 0 4px 10px rgba(244, 63, 94, 0.15);
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

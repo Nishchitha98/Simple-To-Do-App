@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To Do List</title>
+    <link rel="stylesheet" href="style2.css">
+</head>
+<body>
+    <div class="app-container">
+        <header>
+            <h1>To Do List</h1>
+            <p class="subtitle">Elevate your productivity</p>
+        </header>
+
+        <main>
+            <div class="input-group">
+                <input type="text" id="taskInput" placeholder="Enter a task...">
+                <button onclick="addTask()">Add Task</button>
+                <button onclick="clearTasks()">Clear Tasks</button>
+            </div>
+
+            <ul id="taskList"></ul>
+        </main>
+    </div>
+
+    <script src="script2.js"></script>
+</body>
+</html>
